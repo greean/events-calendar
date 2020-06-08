@@ -37,20 +37,26 @@ class App extends Component {
   onChange = (date) => {
     // date set to that just set by onClickDay
     let dateToCheck = this.state.date.toLocaleDateString();
-    console.log(dateToCheck);
-    
-  }
-  
+    // console.log(`dateToCheck = ${dateToCheck}`);
+
+    if(dateToCheck === this.state.events[1].eDate){
+      console.log(`The event "${this.state.events[1].title}" is on the ${this.state.events[1].eDate}!`);
+    }else if(dateToCheck === this.state.events[2].eDate){
+      console.log(`The event "${this.state.events[2].title}" is on the ${this.state.events[2].eDate}!`);
+    }else{
+      console.log(`There are no events on ${dateToCheck}`)
+    }
+  };
   render() {
-    let allEvents = this.state.events.map((event, index) => {
-      return <allEvents 
-        key = {index} 
-        title = {this.title} 
-        eDate = {this.eDate} 
-        details = {this.details} 
-        location = {this.location}
-      />
-    })
+    // let allEvents = this.state.events.map((event, index) => {
+    //   return <allEvents 
+    //     key = {index} 
+    //     title = {this.state.events[1].title} 
+    //     eDate = {this.state.events[1].eDate} 
+    //     details = {this.state.events[1].details} 
+    //     location = {this.state.events[1].location}
+    //   />;
+    // });
     return (
       <div>
         <h1>Events Calendar</h1>
@@ -61,9 +67,9 @@ class App extends Component {
             value={this.state.date}
           />
           <Events 
-            onChange={this.onChange}
-            dateToCheck={this.dateToCheck}
-
+            title={this.title}
+            details={this.title}
+            eDate={this.eDate}
           />
         </div>
       </div>
