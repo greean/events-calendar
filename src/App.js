@@ -28,7 +28,7 @@ class App extends Component {
         details: 
           "Bring the whole family to see this great stage production of the Roald Dahl classic, 'The BFG'. Doors open at 6.00pm.",
         location: "Gladstone Theatre, Port Sunlight"
-      },
+      }
     ]
   }
  
@@ -42,12 +42,14 @@ class App extends Component {
 
     if(dateToCheck === this.state.events[1].eDate){
       console.log(`The event "${this.state.events[1].title}" is on the ${this.state.events[1].eDate}!`);
-      this.setState({selectedEvent: this.state.events[1].title});// Update the title in events for first event
+      this.setState({selectedEvent: this.state.events[1].title});// Update the title in events for event index 1
 
     }else if(dateToCheck === this.state.events[2].eDate){
       console.log(`The event "${this.state.events[2].title}" is on the ${this.state.events[2].eDate}!`);
+      this.setState({selectedEvent: this.state.events[2].title});// Update the title in events for event index 2
     }else{
-      console.log(`There are no events on ${dateToCheck}`)
+      console.log(`There are no events on ${dateToCheck}`);
+      this.setState({selectedEvent: this.state.events[0].details});// Update the title in events for event index 0
     }
   };
   render() {
@@ -64,20 +66,30 @@ class App extends Component {
       <div>
         <h1>Events Calendar</h1>
         <div className = "Wrapper">
-          <Calendar
-            onChange={this.onChange}
-            onClickDay={this.onClickDay}
-            value={this.state.date}
-          />
-          <Events 
-            title={this.title}
-            details={this.details}
-            eDate={this.eDate}
-          />
-          <h1>{this.state.selectedEvent}</h1>
+          <div>
+            <Calendar
+              onChange={this.onChange}
+              onClickDay={this.onClickDay}
+              value={this.state.date}
+            />
+          </div>
+          <div>
+            {this.state.events.map((item, index) => (
+
+              <Events
+                show={item}
+                index={index} 
+                title={this.title}
+                details={this.details}
+                eDate={this.eDate}
+                location={this.location}
+              />
+            ))}
+          </div>
+          <p>{this.state.selectedEvent}</p>  
         </div>
       </div>
-    );
+    )
   }
 }
 
