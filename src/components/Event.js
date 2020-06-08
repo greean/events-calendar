@@ -6,9 +6,9 @@ const Events = (props) => {
       <h2>{props.title}</h2>
       <p>{props.details}</p>
       <p>{props.eDate}</p>
-      <div>
-        {/* <allEvents /> */}
-      </div>
+      {/* <div>
+        <allEvents />
+      </div> */}
     </div>
   );
 }
