@@ -5,6 +5,7 @@ import Events from './components/Event';
 
 class App extends Component {
   state = {
+    selectedEvent: " ",
     date: new Date(),
     events: [
       {
@@ -41,6 +42,8 @@ class App extends Component {
 
     if(dateToCheck === this.state.events[1].eDate){
       console.log(`The event "${this.state.events[1].title}" is on the ${this.state.events[1].eDate}!`);
+      this.setState({selectedEvent: this.state.events[1].title});// Update the title in events for first event
+
     }else if(dateToCheck === this.state.events[2].eDate){
       console.log(`The event "${this.state.events[2].title}" is on the ${this.state.events[2].eDate}!`);
     }else{
@@ -68,9 +71,10 @@ class App extends Component {
           />
           <Events 
             title={this.title}
-            details={this.title}
+            details={this.details}
             eDate={this.eDate}
           />
+          <h1>{this.state.selectedEvent}</h1>
         </div>
       </div>
     );
